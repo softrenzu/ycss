@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT
 POSTS = SITE / "data" / "posts.json"
 ARTICLES = SITE / "blog"
-BASE = "https://softrenzu.github.io/ycss/"
+BASE = "https://blue-court-yscc.onrender.com/"
 OFFICIAL = "https://ysccfutsal.jp/"
 TICKET = "https://more.tiget.net/events/10287"
 
