@@ -2,6 +2,7 @@
 
 Y.S.C.C.横浜フットサルの観戦者増加・新規ファン獲得・個サルや育成カテゴリーへの誘導を目的とした独立ファンガイドです。横浜エクセレンス向け「GREEN SIDE」の設計思想を参考に、YSCC向けに独立した新規コードで制作しました。
 
+- 公開サイト: https://blue-court-yscc.onrender.com/
 - Repository: https://github.com/softrenzu/ycss
 - GitHub Pages URL: https://softrenzu.github.io/ycss/
 - Club official: https://ysccfutsal.jp/
@@ -9,6 +10,10 @@ Y.S.C.C.横浜フットサルの観戦者増加・新規ファン獲得・個サ
 - Official home ticket sales: https://more.tiget.net/events/10287
 - YS個サル: https://ysccfutsal.jp/yskosal/
 - Academy: https://ysccfutsal.jp/academy/
+
+## 公開状況
+
+Render静的サイトとして公開済み（GitHub mainブランチ更新時に自動デプロイ）。GitHub Pagesは別途有効化する場合のミラーとして下記参照。
 
 ## GitHub Pages初回公開
 
