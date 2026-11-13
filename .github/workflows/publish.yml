@@ -44,12 +44,16 @@ jobs:
               git push
             fi
           fi
-      - name: Configure GitHub Pages
+      - name: Configure GitHub Pages (optional mirror)
+        id: pages_setup
+        continue-on-error: true
         uses: actions/configure-pages@v5
       - name: Upload static website
+        if: steps.pages_setup.outcome == 'success'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
       - name: Deploy to GitHub Pages
+        if: steps.pages_setup.outcome == 'success'
         id: deploy
         uses: actions/deploy-pages@v4
