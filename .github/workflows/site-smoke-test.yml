@@ -1,0 +1,27 @@
+name: Verify public BLUE COURT website
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm public homepage and assets respond with HTTP 200
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://blue-court-yscc.onrender.com"
+          for path in "/" "/index.html" "/styles.css" "/app.js" "/data/matches.json" "/blog/2026-11-13-first-guide.html"; do
+            code="$(curl -sS -L --max-time 25 --retry 3 --retry-delay 3 --retry-all-errors -o /tmp/blue_court_resp -w '%{http_code}' "${BASE}${path}")"
+            echo "${path}: HTTP ${code} size: $(wc -c </tmp/blue_court_resp)"
+            if [ "${code}" != "200" ]; then
+              echo "HTTP 200 required for ${path}"
+              head -c 500 /tmp/blue_court_resp || true
+              exit 1
+            fi
+          done
+          curl -fsSL "${BASE}/" | grep -q 'BLUE'
+          echo 'Confirmed BLUE COURT publicly accessible.'
