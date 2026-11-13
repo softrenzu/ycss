@@ -1,0 +1,59 @@
+{
+  "lastVerified": "2026-11-13",
+  "source": "https://www.fleague.jp/club/yokohama/schedule.html",
+  "matches": [
+    {
+      "date": "2026-11-15",
+      "year": "2026",
+      "month": "11",
+      "day": "15",
+      "weekday": "SUN",
+      "time": "14:00",
+      "location": "AWAY",
+      "round": "第14節",
+      "opponent": "ヴィンセドール白山",
+      "venue": "松任総合運動公園体育館",
+      "city": "石川県白山市"
+    },
+    {
+      "date": "2026-11-29",
+      "year": "2026",
+      "month": "11",
+      "day": "29",
+      "weekday": "SUN",
+      "time": "14:00",
+      "location": "HOME",
+      "round": "第16節",
+      "opponent": "ヴォスクオーレ仙台",
+      "venue": "横須賀アリーナ",
+      "city": "神奈川県横須賀市",
+      "ticketUrl": "https://more.tiget.net/events/10287"
+    },
+    {
+      "date": "2026-12-13",
+      "year": "2026",
+      "month": "12",
+      "day": "13",
+      "weekday": "SUN",
+      "time": "13:00",
+      "location": "AWAY",
+      "round": "第17節",
+      "opponent": "ポルセイド浜田",
+      "venue": "島根県立体育館",
+      "city": "島根県浜田市"
+    },
+    {
+      "date": "2026-12-26",
+      "year": "2026",
+      "month": "12",
+      "day": "26",
+      "weekday": "SAT",
+      "time": "14:00",
+      "location": "AWAY",
+      "round": "第18節",
+      "opponent": "リガーレヴィア葛飾",
+      "venue": "水元総合スポーツセンター体育館",
+      "city": "東京都葛飾区"
+    }
+  ]
+}
