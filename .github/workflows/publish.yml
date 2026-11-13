@@ -40,7 +40,7 @@ jobs:
             echo 'Old futsal content detected'
             exit 1
           fi
-          test -s "blog/$(TZ=Asia/Tokyo date +%Y-%m-%d)-daily-football.html" || test -s blog/2026-11-13-verspah-home.html
+          python -c 'import datetime,json,zoneinfo; today=datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Tokyo")).date().isoformat(); posts=json.load(open("data/posts.json",encoding="utf-8"))["posts"]; assert any(p["date"]==today for p in posts), "No article for " + today; print("Validated article for",today)'
       - name: Commit new article files
         shell: bash
         run: |

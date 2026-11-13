@@ -8,6 +8,7 @@ from __future__ import annotations
 import html
 import json
 import os
+import shutil
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote
@@ -121,6 +122,11 @@ def generate() -> None:
         post["url"] = "blog/" + name + ".html"
         (ARTICLES / (name + ".html")).write_text(page(post), encoding="utf-8")
     POSTS.write_text(json.dumps({"posts": posts}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Render's existing build command copies a fixed legacy asset list. Stage the
+    # football-specific stylesheet in its publish directory before that copy.
+    publish_dir = SITE / "public"
+    publish_dir.mkdir(exist_ok=True)
+    shutil.copyfile(SITE / "football.css", publish_dir / "football.css")
     urls = [(BASE, today)] + [(BASE + "blog/" + p["id"] + ".html", p["date"]) for p in posts]
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for url, changed in urls:
