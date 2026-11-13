@@ -23,5 +23,6 @@ jobs:
               exit 1
             fi
           done
-          curl -fsSL "${BASE}/" | grep -q 'BLUE'
+          curl -fsSL "${BASE}/" -o /tmp/blue_court_homepage.html
+          grep -q 'BLUE' /tmp/blue_court_homepage.html
           echo 'Confirmed BLUE COURT publicly accessible.'
