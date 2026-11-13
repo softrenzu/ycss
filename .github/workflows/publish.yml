@@ -1,26 +1,24 @@
-name: Publish BLUE COURT and daily journal
+name: Publish daily YSCC football blog
+
 on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 1 * * *'
+    # GitHub cron is UTC: 01:10 UTC = 10:10 JST every day.
+    - cron: '10 1 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
-  group: blue-court-pages
+  group: blue-court-daily-blog
   cancel-in-progress: false
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -30,30 +28,29 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate original journal articles
+      - name: Publish today's football article and rebuild sitemap
         run: python scripts/daily_blog.py
-      - name: Commit article data and sitemap
+      - name: Validate football edition (no futsal or F.League crosslinks)
         shell: bash
         run: |
-          if ! git diff --quiet || [ -n "$(git ls-files --others --exclude-standard blog sitemap.xml)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/posts.json blog sitemap.xml
-            if ! git diff --cached --quiet; then
-              git commit -m "content: publish BLUE COURT daily journal"
-              git push
-            fi
+          set -euo pipefail
+          python -m json.tool data/matches.json >/dev/null
+          python -m json.tool data/posts.json >/dev/null
+          if grep -RilE 'ysccfutsal|fleague\.jp|more\.tiget\.net|F\.LEAGUE' index.html app.js scripts/daily_blog.py data blog --include='*.html' --include='*.py' --include='*.js' --include='*.json'; then
+            echo 'Old futsal content detected'
+            exit 1
           fi
-      - name: Configure GitHub Pages (optional mirror)
-        id: pages_setup
-        continue-on-error: true
-        uses: actions/configure-pages@v5
-      - name: Upload static website
-        if: steps.pages_setup.outcome == 'success'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - name: Deploy to GitHub Pages
-        if: steps.pages_setup.outcome == 'success'
-        id: deploy
-        uses: actions/deploy-pages@v4
+          test -s "blog/$(TZ=Asia/Tokyo date +%Y-%m-%d)-daily-football.html" || test -s blog/2026-11-13-verspah-home.html
+      - name: Commit new article files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/posts.json blog sitemap.xml
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'content: publish YSCC daily football journal'
+            git push
+          else
+            echo 'Today is already published; no duplicate post.'
+          fi

@@ -1,51 +1,50 @@
-# BLUE COURT
+# BLUE COURT | Y.S.C.C.横浜 JFLサッカー応援メディア
 
-Y.S.C.C.横浜フットサルの観戦者増加・新規ファン獲得・個サルや育成カテゴリーへの誘導を目的とした独立ファンガイドです。横浜エクセレンス向け「GREEN SIDE」の設計思想を参考に、YSCC向けに独立した新規コードで制作しました。
+目的は、Y.S.C.C.横浜の **サッカートップチーム（JFL）** のホームゲーム観客増加と、公式のクラブ情報・スポーツ参加への導線づくりです。横浜エクセレンス向けサイトの「試合 → 観戦ガイド → チケット → 毎日ブログ」という情報設計を参考にしています。
 
-- 公開サイト: https://blue-court-yscc.onrender.com/
-- Repository: https://github.com/softrenzu/ycss
-- GitHub Pages URL: https://softrenzu.github.io/ycss/
-- Club official: https://ysccfutsal.jp/
-- F.League fixture list: https://www.fleague.jp/club/yokohama/schedule.html
-- Official home ticket sales: https://more.tiget.net/events/10287
-- YS個サル: https://ysccfutsal.jp/yskosal/
-- Academy: https://ysccfutsal.jp/academy/
+公開サイト: https://blue-court-yscc.onrender.com/
 
-## 公開状況
+GitHub: https://github.com/softrenzu/ycss
 
-Render静的サイトとして公開済み（GitHub mainブランチ更新時に自動デプロイ）。GitHub Pagesは別途有効化する場合のミラーとして下記参照。
+公式情報:
 
-## GitHub Pages初回公開
+- JFL日程・結果: https://www.jfl.or.jp/jfl-pc/view/s.php?a=2591&f=2026A001_spc.html
+- Y.S.C.C.横浜: https://www.yscc1986.net/
+- Y.S.C.C.公式チケット: https://ticket.yscc1986.net/
+- YS-BASE: https://ys-base.yscc1986.net/
 
-リポジトリはpublicです。GitHub Pagesが未有効の場合、Webの公開にはGitHubのUIで次の設定が1回だけ必要です。
+## 毎日のブログ投稿
 
-1. [Settings > Pages](https://github.com/softrenzu/ycss/settings/pages)を開く。
-2. Build and deployment > Source を GitHub Actions に切り替える。
-3. [Actions > Publish BLUE COURT and daily journal](https://github.com/softrenzu/ycss/actions/workflows/publish.yml) から Run workflow を実行する。
-4. ワークフローの緑色の成功表示を確認し、公開URLを開いてください。
+`.github/workflows/publish.yml` は毎日 **10:10 JST頃** にGitHub Actionsを起動し、`scripts/daily_blog.py` でその日の観戦記事を１本作成、`data/posts.json` と `blog/*.html` と `sitemap.xml` をGitHubへコミットします。既存記事が同じ日にある場合は重複投稿しません。GitHub Actionsのスケジュール実行は混雑時に遅延する可能性があります。
 
-注: GitHub Pagesはコードをpushしただけでは必ずしも自動で有効になりません。GitHub標準トークンだけで新しいPages設定を作成できないため、手動の初回有効化が必要な場合があります。
+Renderはmainへの変更で自動デプロイする設定です。毎日公開できているかどうかは、GitHub Actionsの実行履歴とRenderのデプロイ履歴の両方で確認してください。
 
-## 構成
+記事内容は、サッカー観戦の魅力・チケットの買い方・スタジアムへの行き方・JFLの見どころ・クラブへの関心を高めるテーマを24本でローテーション。架空の試合結果、観客数、チケット残席、選手のコメントや募集状況は作りません。ニュース記事の自動要約や無断転載も行いません。
 
-- index.html: ホームページ、リンクとFAQ。
-- styles.css: レスポンシブのブルー／オレンジデザイン。
-- app.js: JSONの日程・記事表示、記事フィルター、スマホメニュー。
-- data/matches.json: 手動で確認した2026-27試合日程（更新情報は必ず公式照合）。
-- data/posts.json: 記事本文とメタデータ。
-- blog/*.html: scripts/daily_blog.pyが生成するSEO対応記事ページ。
-- scripts/daily_blog.py: JST日付で最大1記事/日の独自の観戦ヒントを生成し、個別HTMLとサイトマップを書き出す。既存記事と重複しない。
-- .github/workflows/publish.yml: push時と毎日10:00 JST頃に記事生成・GitHub Pages公開。
-- sitemap.xml: 記事別URLを自動登録。
+## サイト構成
 
-## 運用と注意
+- `index.html`: トップ・試合日程・チケット・初観戦ガイド・クラブ・FAQ。
+- `styles.css`, `football.css`: モバイル対応の青・オレンジデザイン。
+- `app.js`: 日程・記事の表示、最新ホーム戦の案内、記事カテゴリー切替。
+- `data/matches.json`: 2026年11月13日に公式情報から確認したJFL日程（手動更新）。
+- `data/posts.json`: ブログの記事・出典・日付。
+- `blog/*.html`: SEOと共有に対応した独立記事ページ。
+- `scripts/daily_blog.py`: 毎日記事生成・ページ再構築・sitemap更新。
+- `.github/workflows/site-smoke-test.yml`: 公開先へのHTTPアクセス検証。
 
-観客導線は「検索 / 記事 → 観戦日程 → 公式チケット」、参加導線は「記事 → YS個サル / アカデミー公式ページ」です。
+## 重要な運用上の注意
 
-日程とチケットの掲載データは2026年11月13日の公式情報に基づきます。自動ブログは時事ニュースではなく一般的な観戦のヒントであり、架空の結果・スコア・選手コメント・空席状況などを生成しません。試合日程は自動収集しません。最新のFリーグ公式情報に照合して、data/matches.jsonを更新してください。
+クラブ公式運営を装う表現は使わず、独立ファンメディアとして制作しています。公式ロゴ、写真、動画は権利確認まで転載しません。スクールの募集枠や参加条件、広告・アクセス解析連携は未設定です。
 
-実際の来場数や申込み数の成果測定にはクラブ側との連携が必要です。GA4や広告タグは設定していません。クラブ公式・スポンサー公認サイトを示唆する表現は使わず、掲載写真・ロゴの権利確認が済むまで流用しません。
+**日程は自動更新されません。** `data/matches.json` は試合の延期・中止・新日程発表に合わせて公式サイトを確認して更新してください。次のホーム戦バナーは掲載日程の範囲で自動切替し、掲載済みの最後の試合が過ぎたら非表示にして古い試合を「次回」と表示しないようにしています。
 
-## ローカル確認
+クラブの広報担当から提供される写真・募集情報・イベント告知を反映するには、提供データと使用許諾の確認が必要です。アクセス解析（GA4）や観客数実績の測定は別途設計します。
 
-python -m http.server 8000 で起動して http://localhost:8000 を開きます。記事生成は python scripts/daily_blog.py。
+## 開発時の動作確認
+
+```bash
+python3 scripts/daily_blog.py
+python3 -m http.server 8000
+```
+
+起動後に `http://localhost:8000/` を開きます。

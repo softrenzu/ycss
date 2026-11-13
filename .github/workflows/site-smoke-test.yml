@@ -1,4 +1,4 @@
-name: Verify public BLUE COURT website
+name: Verify public YSCC JFL football website
 on:
   push:
     branches: [main]
@@ -9,12 +9,30 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - name: Confirm public homepage and assets respond with HTTP 200
+      - name: Wait for football edition to be deployed to Render
         shell: bash
         run: |
           set -euo pipefail
           BASE="https://blue-court-yscc.onrender.com"
-          for path in "/" "/index.html" "/styles.css" "/app.js" "/data/matches.json" "/blog/2026-11-13-first-guide.html"; do
+          for attempt in $(seq 1 24); do
+            if curl -fsSL --max-time 25 --retry 2 "${BASE}/?check=${GITHUB_SHA}" -o /tmp/blue_court_homepage.html \
+              && grep -q 'JFL 2026' /tmp/blue_court_homepage.html \
+              && grep -q 'ticket.yscc1986.net' /tmp/blue_court_homepage.html \
+              && ! grep -qE 'ysccfutsal|F.LEAGUE|more.tiget.net' /tmp/blue_court_homepage.html; then
+              echo "JFL football edition is live on attempt ${attempt}."
+              exit 0
+            fi
+            echo "Awaiting Render publication (attempt ${attempt}/24)"
+            sleep 15
+          done
+          echo 'Render did not publish the JFL football edition in time.'
+          exit 1
+      - name: Confirm homepage, assets, and football articles respond with HTTP 200
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://blue-court-yscc.onrender.com"
+          for path in "/" "/index.html" "/styles.css" "/football.css" "/app.js" "/data/matches.json" "/data/posts.json" "/blog/2026-11-13-verspah-home.html"; do
             code="$(curl -sS -L --max-time 25 --retry 3 --retry-delay 3 --retry-all-errors -o /tmp/blue_court_resp -w '%{http_code}' "${BASE}${path}")"
             echo "${path}: HTTP ${code} size: $(wc -c </tmp/blue_court_resp)"
             if [ "${code}" != "200" ]; then
@@ -25,4 +43,4 @@ jobs:
           done
           curl -fsSL "${BASE}/" -o /tmp/blue_court_homepage.html
           grep -q 'BLUE' /tmp/blue_court_homepage.html
-          echo 'Confirmed BLUE COURT publicly accessible.'
+          echo 'Confirmed YSCC JFL football site publicly accessible.'

@@ -1,0 +1,27 @@
+/* Football edition: attendance-first accents over the original design system. */
+.next-match-banner{background:#f8fbff;border-bottom:1px solid #dae5f1;border-top:4px solid #ff7138}
+.next-match-banner[hidden],.ticket-promo[hidden]{display:none}
+.next-match-inner{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:28px 0 30px}
+.next-match-inner>div{display:flex;flex-direction:column;gap:4px}
+.live-tag{display:inline-flex;align-self:flex-start;padding:2px 9px;background:#0d4078;color:#fff;font:800 11px var(--display);letter-spacing:.12em}
+.next-match-inner strong{font:900 58px/.95 var(--display);color:var(--navy)}
+.next-match-inner strong span{font:800 19px/1 var(--display);color:#e45c25;letter-spacing:.035em}
+.next-match-inner p{margin:4px 0 0;font-size:17px;font-weight:900;line-height:1.5}
+.next-match-inner p b{color:#e46d39;margin:0 10px;font:900 19px var(--display)}
+.next-match-inner p small{color:#647990;font-size:11px;font-weight:600}
+.next-match-inner .btn{min-width:242px;flex-shrink:0}
+.ticket-promo{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:30px;background:#0d2c52;color:white;padding:30px 34px;border-left:5px solid var(--orange)}
+.ticket-promo>div{max-width:650px}.ticket-promo small{color:#ffb18e;font:900 12px var(--display);letter-spacing:.13em}
+.ticket-promo h3{font-size:23px;letter-spacing:-.05em;margin:5px 0}.ticket-promo p{font-size:12px;color:#c5d9ea;line-height:1.9;margin:0}
+.ticket-promo .btn{flex-shrink:0;font-size:11px}
+.court-graphic{height:58%;top:23%;transform:rotate(-23deg) skew(-4deg);border-color:#3c6494}
+.court-left,.court-right{width:13%;top:29%;height:42%}
+.court-left:after,.court-right:after{content:"";position:absolute;width:50%;height:44%;border:2px solid #235080;top:27%}
+.court-left:after{left:0;border-left:0}.court-right:after{right:0;border-right:0}
+.step-icon{font-size:45px;opacity:.75}.venue-art strong{font-size:23px}.venue-content a{margin-right:12px}
+.hero-small{margin-top:25px}.hero-en{font-size:clamp(85px,8.6vw,138px);line-height:.83}
+.hero-copy{padding-top:83px}.hero-lead{font-size:14px}.brand-name small{letter-spacing:.04em}
+.play-art-one>span{font-size:100px}.play-art-two>span{font-size:115px}
+@media(max-width:900px){.next-match-inner strong{font-size:47px}.next-match-inner p{font-size:15px}.ticket-promo{align-items:flex-start}.ticket-promo .btn{min-width:170px;gap:12px}.hero-en{font-size:clamp(74px,9.1vw,120px)}}
+@media(max-width:780px){.hero-copy{padding-top:56px}.hero-en{font-size:clamp(78px,14.5vw,120px)}.next-match-inner{align-items:flex-start}.next-match-inner .btn{min-width:0}.ticket-promo{flex-direction:column}.next-match-inner strong{font-size:45px}}
+@media(max-width:540px){.hero-en{font-size:clamp(70px,16.5vw,100px)}.hero-copy{padding-top:42px}.next-match-inner{flex-direction:column;padding:26px 0}.next-match-inner strong{font-size:49px}.next-match-inner strong span{display:block;margin-top:6px}.next-match-inner p{font-size:17px}.next-match-inner .btn{width:100%}.ticket-promo{padding:24px 21px}.ticket-promo .btn{width:100%}.play-art-one>span{font-size:85px}.play-art-two>span{font-size:100px}.venue-art strong{font-size:21px}}

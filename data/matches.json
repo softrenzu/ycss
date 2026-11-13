@@ -1,59 +1,15 @@
 {
   "lastVerified": "2026-11-13",
-  "source": "https://www.fleague.jp/club/yokohama/schedule.html",
+  "source": "https://www.jfl.or.jp/jfl-pc/view/s.php?a=2591&f=2026A001_spc.html",
+  "ticketSource": "https://ticket.yscc1986.net/",
   "matches": [
-    {
-      "date": "2026-11-15",
-      "year": "2026",
-      "month": "11",
-      "day": "15",
-      "weekday": "SUN",
-      "time": "14:00",
-      "location": "AWAY",
-      "round": "第14節",
-      "opponent": "ヴィンセドール白山",
-      "venue": "松任総合運動公園体育館",
-      "city": "石川県白山市"
-    },
-    {
-      "date": "2026-11-29",
-      "year": "2026",
-      "month": "11",
-      "day": "29",
-      "weekday": "SUN",
-      "time": "14:00",
-      "location": "HOME",
-      "round": "第16節",
-      "opponent": "ヴォスクオーレ仙台",
-      "venue": "横須賀アリーナ",
-      "city": "神奈川県横須賀市",
-      "ticketUrl": "https://more.tiget.net/events/10287"
-    },
-    {
-      "date": "2026-12-13",
-      "year": "2026",
-      "month": "12",
-      "day": "13",
-      "weekday": "SUN",
-      "time": "13:00",
-      "location": "AWAY",
-      "round": "第17節",
-      "opponent": "ポルセイド浜田",
-      "venue": "島根県立体育館",
-      "city": "島根県浜田市"
-    },
-    {
-      "date": "2026-12-26",
-      "year": "2026",
-      "month": "12",
-      "day": "26",
-      "weekday": "SAT",
-      "time": "14:00",
-      "location": "AWAY",
-      "round": "第18節",
-      "opponent": "リガーレヴィア葛飾",
-      "venue": "水元総合スポーツセンター体育館",
-      "city": "東京都葛飾区"
-    }
+    {"date":"2026-11-15","year":"2026","month":"11","day":"15","weekday":"SUN","time":"13:00","location":"HOME","round":"JFL 第12節","opponent":"ヴェルスパ大分","venue":"神奈川県立保土ケ谷公園サッカー場","city":"神奈川県横浜市","ticketUrl":"https://ticket.yscc1986.net/matches/1be4ef75-5544-426c-8b29-5573243ff596"},
+    {"date":"2026-11-22","year":"2026","month":"11","day":"22","weekday":"SUN","time":"14:00","location":"AWAY","round":"JFL 第13節","opponent":"アスルクラロ沼津","venue":"愛鷹広域公園多目的競技場","city":"静岡県沼津市"},
+    {"date":"2026-11-28","year":"2026","month":"11","day":"28","weekday":"SAT","time":"13:00","location":"HOME","round":"JFL 第14節","opponent":"ヴィアティン三重","venue":"ニッパツ三ツ沢球技場","city":"神奈川県横浜市","ticketStatus":"準備中"},
+    {"date":"2026-12-06","year":"2026","month":"12","day":"06","weekday":"SUN","time":"13:00","location":"AWAY","round":"JFL 第15節","opponent":"沖縄SV","venue":"沖縄市陸上競技場","city":"沖縄県沖縄市"},
+    {"date":"2026-12-12","year":"2026","month":"12","day":"12","weekday":"SAT","time":"13:00","location":"HOME","round":"JFL 第16節","opponent":"いわてグルージャ盛岡","venue":"ニッパツ三ツ沢球技場","city":"神奈川県横浜市","ticketStatus":"準備中"},
+    {"date":"2026-12-19","year":"2026","month":"12","day":"19","weekday":"SAT","time":"13:00","location":"HOME","round":"JFL 第17節","opponent":"FCマルヤス岡崎","venue":"ニッパツ三ツ沢球技場","city":"神奈川県横浜市","ticketStatus":"準備中"},
+    {"date":"2027-02-28","year":"2027","month":"02","day":"28","weekday":"SUN","time":"13:00","location":"AWAY","round":"JFL 第18節","opponent":"クリアソン新宿","venue":"味の素フィールド西が丘","city":"東京都北区"},
+    {"date":"2027-03-06","year":"2027","month":"03","day":"06","weekday":"SAT","time":"13:00","location":"HOME","round":"JFL 第19節","opponent":"ボンズ市原","venue":"ニッパツ三ツ沢球技場","city":"神奈川県横浜市","ticketStatus":"準備中"}
   ]
 }
