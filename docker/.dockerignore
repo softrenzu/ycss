@@ -1,0 +1,8 @@
+.git
+.github
+.env
+secrets
+runtime
+tests
+__pycache__
+*.zip
