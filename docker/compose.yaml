@@ -1,0 +1,21 @@
+services:
+  blog:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    env_file: .env
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /secrets/google.json
+      TZ: Asia/Tokyo
+    volumes:
+      - ./runtime:/state
+      - ./secrets/google.json:/secrets/google.json:ro
+    profiles: ["jobs"]
+  web:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HTTP_PORT:-8088}:80"
+    volumes:
+      - ./runtime:/srv:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
