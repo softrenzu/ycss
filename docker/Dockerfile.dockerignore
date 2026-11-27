@@ -1,0 +1,6 @@
+**/.env
+**/secrets
+**/runtime
+.git
+**/__pycache__
+**/*.zip
